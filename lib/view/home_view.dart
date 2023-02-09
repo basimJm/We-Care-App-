@@ -26,6 +26,24 @@ class _HomeViewState extends State<HomeView> {
           return Scaffold(
             appBar: AppBar(
               title: const Text("Patients"),
+              actions: [
+                PopupMenuButton(
+                  icon: const Icon(Icons.more_vert),
+                  onSelected: (value) {
+                    if (value == "logout") {
+                      vm.onLogout(context: context);
+                    }
+                  },
+                  itemBuilder: (BuildContext bc) {
+                    return const [
+                      PopupMenuItem(
+                        value: 'logout',
+                        child: Text("Logout"),
+                      ),
+                    ];
+                  },
+                )
+              ],
             ),
             body: Column(
               children: [],
