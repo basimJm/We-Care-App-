@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mapd722_group2_project/constants/route_name.dart';
 import 'package:mapd722_group2_project/themes/app_theme.dart';
 import 'package:mapd722_group2_project/validators/validator_mixin.dart';
 import 'package:mapd722_group2_project/widgets/custom_button.dart';
@@ -81,7 +82,12 @@ class LoginView extends StatelessWidget with ValidatorMixin {
                     SizedBox(
                       width: double.infinity,
                       child: SecondaryButton(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.pushNamed(
+                            context,
+                            RoutesName.registerRoute,
+                          );
+                        },
                         title: 'Create account',
                         backgroundColor: kButtonColor,
                       ),
