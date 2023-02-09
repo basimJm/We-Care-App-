@@ -17,6 +17,9 @@ ThemeData appTheme = ThemeData(
       seedColor: Colors.greenAccent,
       primary: kPrimaryColor,
     ),
+    floatingActionButtonTheme: const FloatingActionButtonThemeData(
+      backgroundColor: kButtonColor,
+    ),
     // appbar theme
     appBarTheme: const AppBarTheme(
       backgroundColor: kPrimaryColor,
