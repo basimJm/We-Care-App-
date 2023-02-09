@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mapd722_group2_project/viewModel/home_vm.dart';
+import 'package:mapd722_group2_project/widgets/no_patient_found.dart';
+import 'package:mapd722_group2_project/widgets/retry_fetch.dart';
 import 'package:provider/provider.dart';
 
 class HomeView extends StatefulWidget {
@@ -14,6 +16,7 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   void initState() {
+    vm.initialization();
     super.initState();
   }
 
@@ -45,9 +48,24 @@ class _HomeViewState extends State<HomeView> {
                 )
               ],
             ),
-            body: Column(
-              children: [],
-            ),
+            body: vm.patientStates == PatientStates.isLoading
+                ? const Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : vm.patientStates == PatientStates.hasError
+                    ? Center(
+                        child: RetryFetch(
+                          errorMessage: vm.errorMessage,
+                          onPressed: vm.initialization,
+                        ),
+                      )
+                    : vm.patientStates == PatientStates.isEmpty
+                        ? const Center(
+                            child: NoPatientFound(),
+                          )
+                        : Column(
+                            children: [],
+                          ),
             floatingActionButton: FloatingActionButton(
               onPressed: () {},
               child: const Icon(Icons.add),
