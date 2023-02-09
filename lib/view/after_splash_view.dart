@@ -20,9 +20,14 @@ class _AfterSplashViewState extends State<AfterSplashView> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Center(
-        child: CircularProgressIndicator(),
+        child: Hero(
+          tag: "logo",
+          child: Image.asset(
+            "assets/logos/wecare_logo.png",
+          ),
+        ),
       ),
     );
   }

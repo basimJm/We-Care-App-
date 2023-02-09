@@ -27,7 +27,11 @@ class LoginView extends StatelessWidget with ValidatorMixin {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Center(child: Image.asset("assets/logos/wecare_logo.png")),
+                    Center(
+                        child: Hero(
+                            tag: "logo",
+                            child:
+                                Image.asset("assets/logos/wecare_logo.png"))),
                     FormSpacer(
                       height: 40.0,
                     ),
