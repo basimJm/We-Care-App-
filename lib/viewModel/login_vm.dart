@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mapd722_group2_project/constants/route_name.dart';
 
 class LoginVM extends ChangeNotifier {
   // This is the key for the form widget
@@ -12,6 +13,12 @@ class LoginVM extends ChangeNotifier {
 
   // Login function
   onLogin({required BuildContext context}) async {
-    if (formKey.currentState!.validate()) {}
+    if (formKey.currentState!.validate()) {
+      Navigator.pushNamedAndRemoveUntil(
+        context,
+        RoutesName.homeRoute,
+        (route) => false,
+      );
+    }
   }
 }

@@ -30,7 +30,7 @@ class LoginView extends StatelessWidget with ValidatorMixin {
                     padding: const EdgeInsets.only(
                         top: 80.0, left: 12.0, right: 12.0, bottom: 12.0),
                     child: Form(
-                      // key: vm.formKey,
+                      key: vm.formKey,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -48,7 +48,7 @@ class LoginView extends StatelessWidget with ValidatorMixin {
                           ),
                           LabelSpacer(),
                           CustomFormTextField(
-                            // controller: vm.email,
+                            controller: vm.email,
                             validator: (value) => emailValidation(value),
                             hint: 'Enter email',
                             prefixIcon: const Icon(
@@ -63,7 +63,7 @@ class LoginView extends StatelessWidget with ValidatorMixin {
                           ),
                           LabelSpacer(),
                           CustomFormTextField(
-                            // controller: vm.password,
+                            controller: vm.password,
                             validator: (value) => passwordValidation(value),
                             hint: 'Enter password',
                             obscureText: true,
