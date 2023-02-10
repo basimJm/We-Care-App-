@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mapd722_group2_project/constants/route_name.dart';
+import 'package:mapd722_group2_project/models/patient_critical_model.dart';
 import 'package:mapd722_group2_project/models/patient_list_model.dart';
 import 'package:mapd722_group2_project/services/patient_service.dart';
 
@@ -31,20 +32,42 @@ class HomeVM extends ChangeNotifier {
     notifyListeners();
   }
 
+  List<PatientCriticalModel> _patientCriticalData = [];
+  List<PatientCriticalModel> get patientCriticalData => _patientCriticalData;
+
+  List<PatientCriticalModel> _clonedCriticalData = [];
+  List<PatientCriticalModel> get clonedCriticalData => _clonedCriticalData;
+
   Future<void> initialization() async {
     setPatientStates(PatientStates.isLoading);
-    PatientService.getPatientLists().then((value) {
-      if (value.isNotEmpty) {
-        _patientData = value;
-        _clonedData = value;
-        setPatientStates(PatientStates.isLoaded);
-      } else {
-        setPatientStates(PatientStates.isEmpty);
-      }
-    }).catchError((err) {
-      _errorMessage = err.toString();
-      setPatientStates(PatientStates.hasError);
-    });
+
+    if (selectedFilterIndex == 0) {
+      PatientService.getPatientLists().then((value) {
+        if (value.isNotEmpty) {
+          _patientData = value;
+          _clonedData = value;
+          setPatientStates(PatientStates.isLoaded);
+        } else {
+          setPatientStates(PatientStates.isEmpty);
+        }
+      }).catchError((err) {
+        _errorMessage = err.toString();
+        setPatientStates(PatientStates.hasError);
+      });
+    } else {
+      PatientService.getPatientsWithCriticalConditions().then((value) {
+        if (value.isNotEmpty) {
+          _patientCriticalData = value;
+          _clonedCriticalData = value;
+          setPatientStates(PatientStates.isLoaded);
+        } else {
+          setPatientStates(PatientStates.isEmpty);
+        }
+      }).catchError((err) {
+        _errorMessage = err.toString();
+        setPatientStates(PatientStates.hasError);
+      });
+    }
   }
 
   onLogout({required BuildContext context}) {
