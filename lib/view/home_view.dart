@@ -5,6 +5,7 @@ import 'package:mapd722_group2_project/widgets/no_patient_found.dart';
 import 'package:mapd722_group2_project/widgets/patient_list_card.dart';
 import 'package:mapd722_group2_project/widgets/patient_list_critical_card.dart';
 import 'package:mapd722_group2_project/widgets/retry_fetch.dart';
+import 'package:mapd722_group2_project/widgets/search_text_form_field.dart';
 import 'package:provider/provider.dart';
 
 class HomeView extends StatefulWidget {
@@ -20,6 +21,7 @@ class _HomeViewState extends State<HomeView> {
   @override
   void initState() {
     vm.initialization();
+    vm.searchListener();
     super.initState();
   }
 
@@ -118,6 +120,23 @@ class _HomeViewState extends State<HomeView> {
                             ),
                           ),
                         ],
+                      ),
+                      const SizedBox(
+                        height: 15.0,
+                      ),
+                      SearchTextFormField(
+                        controller: vm.searchController,
+                        hint: 'Search patients',
+                        backgroundColor: Colors.grey[300]!,
+                        prefixIcon: const Icon(Icons.search),
+                        suffixIcon: vm.showClear
+                            ? IconButton(
+                                onPressed: () {
+                                  vm.searchController.clear();
+                                },
+                                icon: const Icon(Icons.close),
+                              )
+                            : null,
                       ),
                       const SizedBox(
                         height: 15.0,

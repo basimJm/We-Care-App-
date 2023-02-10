@@ -10,6 +10,44 @@ class HomeVM extends ChangeNotifier {
   int _selectedFilterIndex = 0;
   int get selectedFilterIndex => _selectedFilterIndex;
 
+  bool _showClear = false;
+  bool get showClear => _showClear;
+
+  setShowClear(bool value) {
+    _showClear = value;
+    notifyListeners();
+  }
+
+  searchListener() {
+    searchController.addListener(() {
+      if (searchController.text.isEmpty) {
+        setShowClear(false);
+      } else {
+        setShowClear(true);
+      }
+
+      if (_selectedFilterIndex == 0) {
+        _patientData = _clonedData
+            .where((element) => element.firstName!
+                .toLowerCase()
+                .trim()
+                .contains(searchController.text.toLowerCase().trim()))
+            .toList();
+        notifyListeners();
+      } else if (_selectedFilterIndex == 1) {
+        _patientCriticalData = _clonedCriticalData
+            .where((element) => element.firstName!
+                .toLowerCase()
+                .trim()
+                .contains(searchController.text.toLowerCase().trim()))
+            .toList();
+        notifyListeners();
+      }
+    });
+  }
+
+  final searchController = TextEditingController();
+
   setSelectedFilterIndex(int index) {
     _selectedFilterIndex = index;
     notifyListeners();
