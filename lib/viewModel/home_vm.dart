@@ -6,6 +6,14 @@ import 'package:mapd722_group2_project/services/patient_service.dart';
 enum PatientStates { isLoaded, hasError, isLoading, isEmpty }
 
 class HomeVM extends ChangeNotifier {
+  int _selectedFilterIndex = 0;
+  int get selectedFilterIndex => _selectedFilterIndex;
+
+  setSelectedFilterIndex(int index) {
+    _selectedFilterIndex = index;
+    notifyListeners();
+  }
+
   List<PatientListModel> _patientData = [];
   List<PatientListModel> get patientData => _patientData;
 

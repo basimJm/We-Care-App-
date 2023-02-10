@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:mapd722_group2_project/themes/app_theme.dart';
 import 'package:mapd722_group2_project/viewModel/home_vm.dart';
-import 'package:mapd722_group2_project/widgets/arrow_circle.dart';
-import 'package:mapd722_group2_project/widgets/label_spacer.dart';
 import 'package:mapd722_group2_project/widgets/no_patient_found.dart';
 import 'package:mapd722_group2_project/widgets/patient_list_card.dart';
 import 'package:mapd722_group2_project/widgets/retry_fetch.dart';
@@ -75,6 +73,72 @@ class _HomeViewState extends State<HomeView> {
                                 padding: const EdgeInsets.all(15.0),
                                 child: Column(
                                   children: [
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        GestureDetector(
+                                          onTap: () {
+                                            vm.setSelectedFilterIndex(0);
+                                          },
+                                          child: Chip(
+                                            label: Text(
+                                              'All',
+                                              style: TextStyle(
+                                                color:
+                                                    vm.selectedFilterIndex == 0
+                                                        ? Colors.white
+                                                        : kButtonColor,
+                                                fontSize: 15.0,
+                                              ),
+                                            ),
+                                            side: BorderSide(
+                                              color: vm.selectedFilterIndex == 0
+                                                  ? Colors.transparent
+                                                  : kButtonColor,
+                                              width: 1.0,
+                                            ),
+                                            backgroundColor:
+                                                vm.selectedFilterIndex == 0
+                                                    ? kButtonColor
+                                                    : Colors.transparent,
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          width: 15.0,
+                                        ),
+                                        GestureDetector(
+                                          onTap: () {
+                                            vm.setSelectedFilterIndex(1);
+                                          },
+                                          child: Chip(
+                                            label: Text(
+                                              'Critical conditions',
+                                              style: TextStyle(
+                                                color:
+                                                    vm.selectedFilterIndex == 1
+                                                        ? Colors.white
+                                                        : kButtonColor,
+                                                fontSize: 15.0,
+                                              ),
+                                            ),
+                                            side: BorderSide(
+                                              color: vm.selectedFilterIndex == 1
+                                                  ? Colors.transparent
+                                                  : kButtonColor,
+                                              width: 1.0,
+                                            ),
+                                            backgroundColor:
+                                                vm.selectedFilterIndex == 1
+                                                    ? kButtonColor
+                                                    : Colors.transparent,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    const SizedBox(
+                                      height: 15.0,
+                                    ),
                                     ListView.builder(
                                       padding:
                                           const EdgeInsets.only(bottom: 100.0),
