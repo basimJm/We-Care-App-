@@ -23,13 +23,13 @@ class HomeVM extends ChangeNotifier {
     notifyListeners();
   }
 
-  initialization() {
+  Future<void> initialization() async {
     setPatientStates(PatientStates.isLoading);
     PatientService.getPatientLists().then((value) {
       if (value.isNotEmpty) {
         _patientData = value;
         _clonedData = value;
-        setPatientStates(PatientStates.isEmpty);
+        setPatientStates(PatientStates.isLoaded);
       } else {
         setPatientStates(PatientStates.isEmpty);
       }

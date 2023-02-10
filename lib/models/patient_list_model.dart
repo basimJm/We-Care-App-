@@ -30,7 +30,7 @@ class PatientListModel {
   String? email;
   String? mobileNumber;
   String? address;
-  Sex? sex;
+  String? sex;
   DateTime? dateOfBirth;
   int? v;
 
@@ -42,7 +42,7 @@ class PatientListModel {
         email: json["email"],
         mobileNumber: json["mobile_number"],
         address: json["address"],
-        sex: sexValues.map[json["sex"]]!,
+        sex: json["sex"],
         dateOfBirth: json["date_of_birth"] == null
             ? null
             : DateTime.parse(json["date_of_birth"]),
@@ -56,25 +56,9 @@ class PatientListModel {
         "email": email,
         "mobile_number": mobileNumber,
         "address": address,
-        "sex": sexValues.reverse[sex],
+        "sex": sex,
         "date_of_birth":
             "${dateOfBirth!.year.toString().padLeft(4, '0')}-${dateOfBirth!.month.toString().padLeft(2, '0')}-${dateOfBirth!.day.toString().padLeft(2, '0')}",
         "__v": v,
       };
-}
-
-enum Sex { M }
-
-final sexValues = EnumValues({"M": Sex.M});
-
-class EnumValues<T> {
-  Map<String, T> map;
-  late Map<T, String> reverseMap;
-
-  EnumValues(this.map);
-
-  Map<T, String> get reverse {
-    reverseMap = map.map((k, v) => MapEntry(v, k));
-    return reverseMap;
-  }
 }

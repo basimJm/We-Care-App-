@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mapd722_group2_project/viewModel/home_vm.dart';
+import 'package:mapd722_group2_project/widgets/arrow_circle.dart';
+import 'package:mapd722_group2_project/widgets/label_spacer.dart';
 import 'package:mapd722_group2_project/widgets/no_patient_found.dart';
+import 'package:mapd722_group2_project/widgets/patient_list_card.dart';
 import 'package:mapd722_group2_project/widgets/retry_fetch.dart';
 import 'package:provider/provider.dart';
 
@@ -63,8 +67,38 @@ class _HomeViewState extends State<HomeView> {
                         ? const Center(
                             child: NoPatientFound(),
                           )
-                        : Column(
-                            children: [],
+                        : RefreshIndicator(
+                            onRefresh: vm.initialization,
+                            child: SingleChildScrollView(
+                              physics: const BouncingScrollPhysics(),
+                              child: Padding(
+                                padding: const EdgeInsets.all(15.0),
+                                child: Column(
+                                  children: [
+                                    ListView.builder(
+                                      padding:
+                                          const EdgeInsets.only(bottom: 100.0),
+                                      physics:
+                                          const NeverScrollableScrollPhysics(),
+                                      shrinkWrap: true,
+                                      itemCount: vm.patientData.length,
+                                      itemBuilder: (context, index) {
+                                        return PatientListCard(
+                                          onPressed: () {},
+                                          firstName:
+                                              vm.patientData[index].firstName!,
+                                          lastName:
+                                              vm.patientData[index].lastName!,
+                                          sex: vm.patientData[index].sex!,
+                                          dob: vm
+                                              .patientData[index].dateOfBirth!,
+                                        );
+                                      },
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
                           ),
             floatingActionButton: FloatingActionButton(
               onPressed: () {},
