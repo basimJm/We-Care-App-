@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mapd722_group2_project/constants/route_name.dart';
 import 'package:mapd722_group2_project/themes/app_theme.dart';
 import 'package:mapd722_group2_project/viewModel/home_vm.dart';
 import 'package:mapd722_group2_project/widgets/no_patient_found.dart';
@@ -231,7 +232,10 @@ class _HomeViewState extends State<HomeView> {
               ),
             ),
             floatingActionButton: FloatingActionButton(
-              onPressed: () {},
+              onPressed: () {
+                FocusScope.of(context).unfocus();
+                Navigator.pushNamed(context, RoutesName.addNewPatientRoute);
+              },
               child: const Icon(Icons.add),
             ),
           );
