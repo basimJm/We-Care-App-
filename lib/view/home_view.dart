@@ -54,7 +54,7 @@ class _HomeViewState extends State<HomeView> {
             body: RefreshIndicator(
               onRefresh: vm.initialization,
               child: SingleChildScrollView(
-                physics: const BouncingScrollPhysics(),
+                physics: const AlwaysScrollableScrollPhysics(),
                 child: Padding(
                   padding: const EdgeInsets.all(15.0),
                   child: Column(
@@ -162,7 +162,8 @@ class _HomeViewState extends State<HomeView> {
                                   : vm.selectedFilterIndex == 0
                                       ? ListView.builder(
                                           padding: const EdgeInsets.only(
-                                              bottom: 100.0),
+                                            bottom: 100,
+                                          ),
                                           physics:
                                               const NeverScrollableScrollPhysics(),
                                           shrinkWrap: true,
@@ -182,7 +183,8 @@ class _HomeViewState extends State<HomeView> {
                                         )
                                       : ListView.builder(
                                           padding: const EdgeInsets.only(
-                                              bottom: 100.0),
+                                            bottom: 100.0,
+                                          ),
                                           physics:
                                               const NeverScrollableScrollPhysics(),
                                           shrinkWrap: true,
