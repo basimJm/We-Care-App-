@@ -21,9 +21,18 @@ class LoginView extends StatelessWidget with ValidatorMixin {
       create: (context) => LoginVM(),
       child: Consumer<LoginVM>(
         builder: (context, vm, child) {
-          return Scaffold(
-            body: LoginBackground(
-              child: SingleChildScrollView(
+          return Container(
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(
+                  "assets/backgrounds/w_login_background.png",
+                ),
+                fit: BoxFit.cover,
+              ),
+            ),
+            child: Scaffold(
+              backgroundColor: Colors.transparent,
+              body: SingleChildScrollView(
                 child: SizedBox(
                   width: double.infinity,
                   child: Padding(

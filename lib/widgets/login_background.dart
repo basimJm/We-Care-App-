@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mapd722_group2_project/themes/app_theme.dart';
 
 class LoginBackground extends StatelessWidget {
   final Widget child;
