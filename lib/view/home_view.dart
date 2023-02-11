@@ -234,7 +234,10 @@ class _HomeViewState extends State<HomeView> {
             floatingActionButton: FloatingActionButton(
               onPressed: () {
                 FocusScope.of(context).unfocus();
-                Navigator.pushNamed(context, RoutesName.addNewPatientRoute);
+                Navigator.pushNamed(context, RoutesName.addNewPatientRoute)
+                    .then((value) {
+                  vm.initialization();
+                });
               },
               child: const Icon(Icons.add),
             ),

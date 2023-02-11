@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:mapd722_group2_project/services/patient_service.dart';
+import 'package:mapd722_group2_project/widgets/error_dialog.dart';
+import 'package:mapd722_group2_project/widgets/loading_overlay.dart';
+import 'package:mapd722_group2_project/widgets/success_dialog.dart';
 
 class AddNewPatientVM extends ChangeNotifier {
   final DateFormat formatter = DateFormat('yyyy-MM-dd');
@@ -61,6 +65,38 @@ class AddNewPatientVM extends ChangeNotifier {
         ),
       );
     }
-    if (formKey.currentState!.validate()) {}
+    if (formKey.currentState!.validate()) {
+      // Map<String, String> data = {
+      //   "firstName": firstName.text,
+      //   "lastName": lastName.text,
+      //   "email": email.text,
+      //   "mobileNumber": mobileNumber.text,
+      //   "address": address.text,
+      //   "sex": _selectedGender,
+      //   "dob": dob.text,
+      // };
+      LoadingOverlay.of(context).show();
+      PatientService.createNewPatient(
+        firstName: firstName.text,
+        lastName: lastName.text,
+        email: email.text,
+        mobileNumber: mobileNumber.text,
+        address: address.text,
+        sex: _selectedGender,
+        dob: dob.text,
+      ).then((value) {
+        LoadingOverlay.of(context).hide();
+        SuccessDialogBox.successDialog(
+          "Success",
+          "Patient ${value.firstName} has been successfuly created.",
+          context,
+        ).then((value) {
+          Navigator.pop(context);
+        });
+      }).catchError((err) {
+        LoadingOverlay.of(context).hide();
+        ErrorDialogBox.errorDialog("Error", err.toString(), context);
+      });
+    }
   }
 }
