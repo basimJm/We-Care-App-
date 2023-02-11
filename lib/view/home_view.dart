@@ -181,6 +181,7 @@ class _HomeViewState extends State<HomeView> {
                                     )
                                   : vm.selectedFilterIndex == 0
                                       ? ListView.builder(
+                                          reverse: true,
                                           padding: const EdgeInsets.only(
                                             bottom: 100,
                                           ),
