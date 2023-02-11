@@ -21,6 +21,7 @@ class CustomFormTextField extends StatelessWidget {
   final bool enabled;
   final TextAlign textAlign;
   final Key? key;
+  final String? errorText;
 
   // ignore: prefer_const_constructors_in_immutables, use_key_in_widget_constructors
   CustomFormTextField({
@@ -43,6 +44,7 @@ class CustomFormTextField extends StatelessWidget {
     this.key,
     this.textAlign = TextAlign.left,
     this.backgroundColor = Colors.white,
+    this.errorText,
   });
 
   @override
@@ -64,6 +66,7 @@ class CustomFormTextField extends StatelessWidget {
       style: const TextStyle(fontSize: 15.0),
       textAlign: textAlign,
       decoration: InputDecoration(
+        errorText: errorText,
         errorStyle: TextStyle(height: errorHeight),
         border: const OutlineInputBorder(
           borderRadius: BorderRadius.all(
@@ -90,8 +93,8 @@ class CustomFormTextField extends StatelessWidget {
         disabledBorder: const OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(10)),
           borderSide: BorderSide(
-            width: 0.2,
-            color: Colors.transparent,
+            width: 1,
+            color: Colors.black,
           ),
         ),
 

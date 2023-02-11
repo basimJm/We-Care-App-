@@ -13,6 +13,7 @@ const Color kButtonColor = Color(0xFF2A948E);
 ThemeData appTheme = ThemeData(
     // app scaffold background color
     scaffoldBackgroundColor: Colors.white,
+    toggleableActiveColor: kPrimaryColor,
     colorScheme: ColorScheme.fromSeed(
       seedColor: Colors.greenAccent,
       primary: kPrimaryColor,
