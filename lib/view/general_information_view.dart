@@ -188,7 +188,12 @@ class _GeneralInformationViewState extends State<GeneralInformationView>
                                   child: SizedBox(
                                     width: double.infinity,
                                     child: CustomButton(
-                                      onTap: () {},
+                                      onTap: () {
+                                        vm.onSubmit(
+                                          context: context,
+                                          patientId: widget.patientId,
+                                        );
+                                      },
                                       title: 'Submit',
                                       backgroundColor: kButtonColor,
                                     ),
