@@ -196,6 +196,8 @@ class _HomeViewState extends State<HomeView> {
                                           itemBuilder: (context, index) {
                                             return PatientListCard(
                                               onPressed: () {
+                                                FocusScope.of(context)
+                                                    .unfocus();
                                                 showModalBottomSheet(
                                                   shape:
                                                       const RoundedRectangleBorder(
