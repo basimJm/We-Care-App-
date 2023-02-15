@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mapd722_group2_project/constants/route_name.dart';
 import 'package:mapd722_group2_project/themes/app_theme.dart';
 import 'package:mapd722_group2_project/viewModel/home_vm.dart';
+import 'package:mapd722_group2_project/widgets/arrow_circle.dart';
+import 'package:mapd722_group2_project/widgets/modal_card.dart';
 import 'package:mapd722_group2_project/widgets/no_patient_found.dart';
 import 'package:mapd722_group2_project/widgets/patient_list_card.dart';
 import 'package:mapd722_group2_project/widgets/patient_list_critical_card.dart';
@@ -191,7 +194,74 @@ class _HomeViewState extends State<HomeView> {
                                           itemCount: vm.patientData.length,
                                           itemBuilder: (context, index) {
                                             return PatientListCard(
-                                              onPressed: () {},
+                                              onPressed: () {
+                                                showModalBottomSheet(
+                                                  shape:
+                                                      const RoundedRectangleBorder(
+                                                          borderRadius:
+                                                              BorderRadius.only(
+                                                    topLeft:
+                                                        Radius.circular(15.0),
+                                                    topRight:
+                                                        Radius.circular(15.0),
+                                                  )),
+                                                  context: context,
+                                                  builder: (context) {
+                                                    return Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                        left: 12.0,
+                                                        right: 12.0,
+                                                        top: 12.0,
+                                                        bottom: 30.0,
+                                                      ),
+                                                      child: Column(
+                                                        mainAxisSize:
+                                                            MainAxisSize.min,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Center(
+                                                            child: Container(
+                                                              color:
+                                                                  const Color(
+                                                                0xFFA3A3A3,
+                                                              ),
+                                                              height: 2,
+                                                              width: 100.0,
+                                                            ),
+                                                          ),
+                                                          const SizedBox(
+                                                            height: 12.0,
+                                                          ),
+                                                          ModalCard(
+                                                            imageAsset:
+                                                                "assets/icons/patient_general.png",
+                                                            title:
+                                                                "Patient General Information",
+                                                            subtitle:
+                                                                "View / Update",
+                                                            onPressed: () {},
+                                                          ),
+                                                          const SizedBox(
+                                                            height: 12.0,
+                                                          ),
+                                                          ModalCard(
+                                                            imageAsset:
+                                                                "assets/icons/patient_clinical.png",
+                                                            title:
+                                                                "Patient Clinical Records",
+                                                            subtitle:
+                                                                "View / Update",
+                                                            onPressed: () {},
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    );
+                                                  },
+                                                );
+                                              },
                                               firstName: vm.patientData[index]
                                                   .firstName!,
                                               lastName: vm
