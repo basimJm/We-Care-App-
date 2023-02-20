@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mapd722_group2_project/constants/route_name.dart';
 import 'package:mapd722_group2_project/themes/app_theme.dart';
+import 'package:mapd722_group2_project/view/clinical_records_view.dart';
 import 'package:mapd722_group2_project/view/general_information_view.dart';
 import 'package:mapd722_group2_project/viewModel/home_vm.dart';
-import 'package:mapd722_group2_project/widgets/arrow_circle.dart';
 import 'package:mapd722_group2_project/widgets/modal_card.dart';
 import 'package:mapd722_group2_project/widgets/no_patient_found.dart';
 import 'package:mapd722_group2_project/widgets/patient_list_card.dart';
@@ -274,7 +273,28 @@ class _HomeViewState extends State<HomeView> {
                                                                 "Patient Clinical Records",
                                                             subtitle:
                                                                 "View / Update",
-                                                            onPressed: () {},
+                                                            onPressed: () {
+                                                              Navigator.push(
+                                                                context,
+                                                                MaterialPageRoute(
+                                                                  builder:
+                                                                      (context) =>
+                                                                          ClinicalRecordsView(
+                                                                    patientName: vm
+                                                                        .patientData[
+                                                                            index]
+                                                                        .firstName!,
+                                                                    patientId: vm
+                                                                        .patientData[
+                                                                            index]
+                                                                        .id!,
+                                                                  ),
+                                                                ),
+                                                              ).then((value) {
+                                                                Navigator.pop(
+                                                                    context);
+                                                              });
+                                                            },
                                                           ),
                                                         ],
                                                       ),
