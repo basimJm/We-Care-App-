@@ -82,7 +82,7 @@ class _ClinicalRecordsViewState extends State<ClinicalRecordsView> {
                             GestureDetector(
                               onTap: () {
                                 vm.setSelectedFilterIndex(1);
-                                vm.initialization(patientId: widget.patientId);
+                                vm.filterTickets("Blood Pressure");
                               },
                               child: Chip(
                                 label: Text(
@@ -111,7 +111,7 @@ class _ClinicalRecordsViewState extends State<ClinicalRecordsView> {
                             GestureDetector(
                               onTap: () {
                                 vm.setSelectedFilterIndex(2);
-                                vm.initialization(patientId: widget.patientId);
+                                vm.filterTickets("Heart Beat Rate");
                               },
                               child: Chip(
                                 label: Text(
@@ -140,7 +140,7 @@ class _ClinicalRecordsViewState extends State<ClinicalRecordsView> {
                             GestureDetector(
                               onTap: () {
                                 vm.setSelectedFilterIndex(3);
-                                vm.initialization(patientId: widget.patientId);
+                                vm.filterTickets("Blood Oxygen Level");
                               },
                               child: Chip(
                                 label: Text(
@@ -169,7 +169,7 @@ class _ClinicalRecordsViewState extends State<ClinicalRecordsView> {
                             GestureDetector(
                               onTap: () {
                                 vm.setSelectedFilterIndex(4);
-                                vm.initialization(patientId: widget.patientId);
+                                vm.filterTickets("Respiratory rate");
                               },
                               child: Chip(
                                 label: Text(
@@ -218,6 +218,16 @@ class _ClinicalRecordsViewState extends State<ClinicalRecordsView> {
                   ),
                 ),
               ),
+            ),
+            floatingActionButton: FloatingActionButton(
+              onPressed: () {
+                FocusScope.of(context).unfocus();
+                // Navigator.pushNamed(context, RoutesName.addNewPatientRoute)
+                //     .then((value) {
+                //   vm.initialization();
+                // });
+              },
+              child: const Icon(Icons.add),
             ),
           );
         },

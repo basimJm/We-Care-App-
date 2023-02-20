@@ -15,14 +15,25 @@ class ClinicalRecordsVM extends ChangeNotifier {
   List<ClinicalRecordsModel> _clinicalData = [];
   List<ClinicalRecordsModel> get clinicalData => _clinicalData;
 
+  List<ClinicalRecordsModel> _clonedData = [];
+  List<ClinicalRecordsModel> get clonedData => _clonedData;
+
   Future<void> initialization({required String patientId}) async {
+    setSelectedFilterIndex(0);
     ClincalRecordService.getClincalRecords(patientId: patientId).then((value) {
       _clinicalData = value;
+      _clonedData = value;
       notifyListeners();
     }).catchError((err) {
       if (kDebugMode) {
         print(err);
       }
     });
+  }
+
+  filterTickets(String value) {
+    _clinicalData =
+        _clonedData.where((element) => element.category == value).toList();
+    notifyListeners();
   }
 }
