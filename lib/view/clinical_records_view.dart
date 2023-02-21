@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mapd722_group2_project/themes/app_theme.dart';
 import 'package:mapd722_group2_project/view/add_blood_oxygen_level_view.dart';
 import 'package:mapd722_group2_project/view/add_blood_pressure_view.dart';
+import 'package:mapd722_group2_project/view/add_heart_beat_rate_view.dart';
 import 'package:mapd722_group2_project/view/add_respiratory_rate_view.dart';
 import 'package:mapd722_group2_project/viewModel/clinical_records_vm.dart';
 import 'package:mapd722_group2_project/widgets/clinical_card.dart';
@@ -331,7 +332,21 @@ class _ClinicalRecordsViewState extends State<ClinicalRecordsView> {
                             imageAsset: "assets/icons/test_tube.png",
                             title: "Heart Beat Rate test",
                             subtitle: "Add",
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => AddHeartBeatRateView(
+                                    patientId: widget.patientId,
+                                  ),
+                                ),
+                              ).then((value) {
+                                Navigator.pop(context);
+                                vm.initialization(
+                                  patientId: widget.patientId,
+                                );
+                              });
+                            },
                           ),
                         ],
                       ),

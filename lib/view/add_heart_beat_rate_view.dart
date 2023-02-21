@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mapd722_group2_project/themes/app_theme.dart';
 import 'package:mapd722_group2_project/validators/validator_mixin.dart';
-import 'package:mapd722_group2_project/viewModel/add_blood_oxygen_level_vm.dart';
+import 'package:mapd722_group2_project/viewModel/add_heart_beat_rate_vm.dart';
 import 'package:mapd722_group2_project/widgets/custom_button.dart';
 import 'package:mapd722_group2_project/widgets/custom_text_form_field.dart';
 import 'package:mapd722_group2_project/widgets/form_label.dart';
@@ -9,8 +9,8 @@ import 'package:mapd722_group2_project/widgets/form_spacer.dart';
 import 'package:mapd722_group2_project/widgets/label_spacer.dart';
 import 'package:provider/provider.dart';
 
-class AddBloodOxygenLevelView extends StatelessWidget with ValidatorMixin {
-  const AddBloodOxygenLevelView({
+class AddHeartBeatRateView extends StatelessWidget with ValidatorMixin {
+  const AddHeartBeatRateView({
     super.key,
     required this.patientId,
   });
@@ -19,12 +19,12 @@ class AddBloodOxygenLevelView extends StatelessWidget with ValidatorMixin {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<AddBloodOxygenLevelVM>(
-      create: (context) => AddBloodOxygenLevelVM(),
-      child: Consumer<AddBloodOxygenLevelVM>(builder: (context, vm, child) {
+    return ChangeNotifierProvider<AddHeartBeatRateVM>(
+      create: (context) => AddHeartBeatRateVM(),
+      child: Consumer<AddHeartBeatRateVM>(builder: (context, vm, child) {
         return Scaffold(
           appBar: AppBar(
-            title: const Text('Add Blood Oxygen Level'),
+            title: const Text('Add Heart Beat Rate'),
           ),
           body: SingleChildScrollView(
             child: Padding(
@@ -69,7 +69,7 @@ class AddBloodOxygenLevelView extends StatelessWidget with ValidatorMixin {
                     ),
                     FormSpacer(),
                     FormLabel(
-                      label: 'Blood Oxygen Level',
+                      label: 'Respiratory Rate',
                       isRequired: true,
                     ),
                     LabelSpacer(),
@@ -78,19 +78,19 @@ class AddBloodOxygenLevelView extends StatelessWidget with ValidatorMixin {
                       children: [
                         Expanded(
                           child: CustomFormTextField(
-                            controller: vm.percentage,
+                            controller: vm.rate,
                             keyboardType: const TextInputType.numberWithOptions(
                               decimal: true,
                             ),
                             validator: (value) => requiredValidation(
-                                value, "Blood Oxygen Level is required"),
-                            hint: 'Enter percentage',
+                                value, "Heart Beat Rate is required"),
+                            hint: 'Enter Rate',
                           ),
                         ),
                         const SizedBox(
                           width: 10.0,
                         ),
-                        const Text('%'),
+                        const Text('BPM'),
                       ],
                     ),
                     FormSpacer(
