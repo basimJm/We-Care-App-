@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mapd722_group2_project/themes/app_theme.dart';
+import 'package:mapd722_group2_project/view/add_blood_oxygen_level_view.dart';
 import 'package:mapd722_group2_project/view/add_blood_pressure_view.dart';
 import 'package:mapd722_group2_project/view/add_respiratory_rate_view.dart';
 import 'package:mapd722_group2_project/viewModel/clinical_records_vm.dart';
@@ -307,7 +308,21 @@ class _ClinicalRecordsViewState extends State<ClinicalRecordsView> {
                             imageAsset: "assets/icons/test_tube.png",
                             title: "Blood Oxygen Level test",
                             subtitle: "Add",
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => AddBloodOxygenLevelView(
+                                    patientId: widget.patientId,
+                                  ),
+                                ),
+                              ).then((value) {
+                                Navigator.pop(context);
+                                vm.initialization(
+                                  patientId: widget.patientId,
+                                );
+                              });
+                            },
                           ),
                           const SizedBox(
                             height: 12.0,
