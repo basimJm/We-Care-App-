@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mapd722_group2_project/themes/app_theme.dart';
+import 'package:mapd722_group2_project/view/add_blood_pressure_view.dart';
 import 'package:mapd722_group2_project/viewModel/clinical_records_vm.dart';
 import 'package:mapd722_group2_project/widgets/clinical_card.dart';
 import 'package:mapd722_group2_project/widgets/modal_card.dart';
@@ -248,7 +249,22 @@ class _ClinicalRecordsViewState extends State<ClinicalRecordsView> {
                                                 "assets/icons/test_tube.png",
                                             title: "Blood Pressure test",
                                             subtitle: "Add",
-                                            onPressed: () {},
+                                            onPressed: () {
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      AddBloodPressureView(
+                                                    patientId: widget.patientId,
+                                                  ),
+                                                ),
+                                              ).then((value) {
+                                                Navigator.pop(context);
+                                                vm.initialization(
+                                                  patientId: widget.patientId,
+                                                );
+                                              });
+                                            },
                                           ),
                                           const SizedBox(
                                             height: 12.0,
