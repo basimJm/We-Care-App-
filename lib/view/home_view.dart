@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mapd722_group2_project/constants/route_name.dart';
 import 'package:mapd722_group2_project/themes/app_theme.dart';
 import 'package:mapd722_group2_project/view/clinical_records_view.dart';
+import 'package:mapd722_group2_project/view/fix_patient_view.dart';
 import 'package:mapd722_group2_project/view/general_information_view.dart';
 import 'package:mapd722_group2_project/viewModel/home_vm.dart';
 import 'package:mapd722_group2_project/widgets/modal_card.dart';
@@ -323,7 +324,146 @@ class _HomeViewState extends State<HomeView> {
                                               vm.patientCriticalData.length,
                                           itemBuilder: (context, index) {
                                             return PatientListCriticalCard(
-                                              onPressed: () {},
+                                              onPressed: () {
+                                                FocusScope.of(context)
+                                                    .unfocus();
+                                                showModalBottomSheet(
+                                                  shape:
+                                                      const RoundedRectangleBorder(
+                                                          borderRadius:
+                                                              BorderRadius.only(
+                                                    topLeft:
+                                                        Radius.circular(15.0),
+                                                    topRight:
+                                                        Radius.circular(15.0),
+                                                  )),
+                                                  context: context,
+                                                  builder: (context) {
+                                                    return Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                        left: 12.0,
+                                                        right: 12.0,
+                                                        top: 12.0,
+                                                        bottom: 30.0,
+                                                      ),
+                                                      child: Column(
+                                                        mainAxisSize:
+                                                            MainAxisSize.min,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Center(
+                                                            child: Container(
+                                                              color:
+                                                                  const Color(
+                                                                0xFFA3A3A3,
+                                                              ),
+                                                              height: 2,
+                                                              width: 100.0,
+                                                            ),
+                                                          ),
+                                                          const SizedBox(
+                                                            height: 12.0,
+                                                          ),
+                                                          ModalCard(
+                                                            imageAsset:
+                                                                "assets/icons/fix_icon.png",
+                                                            title:
+                                                                "Fix this patient",
+                                                            subtitle: "Update",
+                                                            onPressed: () {
+                                                              Navigator.push(
+                                                                context,
+                                                                MaterialPageRoute(
+                                                                  builder:
+                                                                      (context) =>
+                                                                          FixPatientView(
+                                                                    testId: vm
+                                                                        .patientCriticalData[
+                                                                            index]
+                                                                        .testId!,
+                                                                    patientId: vm
+                                                                        .patientData[
+                                                                            index]
+                                                                        .id!,
+                                                                  ),
+                                                                ),
+                                                              ).then((value) {
+                                                                Navigator.pop(
+                                                                    context);
+                                                              });
+                                                            },
+                                                          ),
+                                                          const SizedBox(
+                                                            height: 12.0,
+                                                          ),
+                                                          ModalCard(
+                                                            imageAsset:
+                                                                "assets/icons/patient_general.png",
+                                                            title:
+                                                                "Patient General Information",
+                                                            subtitle:
+                                                                "View / Update",
+                                                            onPressed: () {
+                                                              Navigator.push(
+                                                                context,
+                                                                MaterialPageRoute(
+                                                                  builder:
+                                                                      (context) =>
+                                                                          GeneralInformationView(
+                                                                    patientId: vm
+                                                                        .patientData[
+                                                                            index]
+                                                                        .id!,
+                                                                  ),
+                                                                ),
+                                                              ).then((value) {
+                                                                Navigator.pop(
+                                                                    context);
+                                                              });
+                                                            },
+                                                          ),
+                                                          const SizedBox(
+                                                            height: 12.0,
+                                                          ),
+                                                          ModalCard(
+                                                            imageAsset:
+                                                                "assets/icons/patient_clinical.png",
+                                                            title:
+                                                                "Patient Clinical Records",
+                                                            subtitle:
+                                                                "View / Update",
+                                                            onPressed: () {
+                                                              Navigator.push(
+                                                                context,
+                                                                MaterialPageRoute(
+                                                                  builder:
+                                                                      (context) =>
+                                                                          ClinicalRecordsView(
+                                                                    patientName: vm
+                                                                        .patientData[
+                                                                            index]
+                                                                        .firstName!,
+                                                                    patientId: vm
+                                                                        .patientData[
+                                                                            index]
+                                                                        .id!,
+                                                                  ),
+                                                                ),
+                                                              ).then((value) {
+                                                                Navigator.pop(
+                                                                    context);
+                                                              });
+                                                            },
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    );
+                                                  },
+                                                );
+                                              },
                                               firstName: vm.patientData[index]
                                                   .firstName!,
                                               lastName: vm
