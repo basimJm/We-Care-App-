@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mapd722_group2_project/themes/app_theme.dart';
 import 'package:mapd722_group2_project/viewModel/clinical_records_vm.dart';
 import 'package:mapd722_group2_project/widgets/clinical_card.dart';
+import 'package:mapd722_group2_project/widgets/modal_card.dart';
 import 'package:provider/provider.dart';
 
 class ClinicalRecordsView extends StatefulWidget {
@@ -209,6 +210,82 @@ class _ClinicalRecordsViewState extends State<ClinicalRecordsView> {
                           return Padding(
                             padding: const EdgeInsets.only(bottom: 15.0),
                             child: ClinicalCard(
+                              onPressed: () {
+                                showModalBottomSheet(
+                                  shape: const RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(15.0),
+                                    topRight: Radius.circular(15.0),
+                                  )),
+                                  context: context,
+                                  builder: (context) {
+                                    return Padding(
+                                      padding: const EdgeInsets.only(
+                                        left: 12.0,
+                                        right: 12.0,
+                                        top: 12.0,
+                                        bottom: 30.0,
+                                      ),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Center(
+                                            child: Container(
+                                              color: const Color(
+                                                0xFFA3A3A3,
+                                              ),
+                                              height: 2,
+                                              width: 100.0,
+                                            ),
+                                          ),
+                                          const SizedBox(
+                                            height: 12.0,
+                                          ),
+                                          ModalCard(
+                                            imageAsset:
+                                                "assets/icons/test_tube.png",
+                                            title: "Blood Pressure test",
+                                            subtitle: "Add",
+                                            onPressed: () {},
+                                          ),
+                                          const SizedBox(
+                                            height: 12.0,
+                                          ),
+                                          ModalCard(
+                                            imageAsset:
+                                                "assets/icons/test_tube.png",
+                                            title: "Respiratory Rate test",
+                                            subtitle: "Add",
+                                            onPressed: () {},
+                                          ),
+                                          const SizedBox(
+                                            height: 12.0,
+                                          ),
+                                          ModalCard(
+                                            imageAsset:
+                                                "assets/icons/test_tube.png",
+                                            title: "Blood Oxygen Level test",
+                                            subtitle: "Add",
+                                            onPressed: () {},
+                                          ),
+                                          const SizedBox(
+                                            height: 12.0,
+                                          ),
+                                          ModalCard(
+                                            imageAsset:
+                                                "assets/icons/test_tube.png",
+                                            title: "Heart Beat Rate test",
+                                            subtitle: "Add",
+                                            onPressed: () {},
+                                          ),
+                                        ],
+                                      ),
+                                    );
+                                  },
+                                );
+                              },
                               data: vm.clinicalData[index],
                             ),
                           );

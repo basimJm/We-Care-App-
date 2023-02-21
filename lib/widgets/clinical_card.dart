@@ -6,9 +6,11 @@ class ClinicalCard extends StatelessWidget {
   const ClinicalCard({
     super.key,
     required this.data,
+    required this.onPressed,
   });
 
   final ClinicalRecordsModel data;
+  final VoidCallback onPressed;
 
   String generateValue(String category, Readings readings) {
     switch (category) {
@@ -27,65 +29,68 @@ class ClinicalCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 10.0,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15.0),
-      ),
-      margin: const EdgeInsets.all(0.0),
-      child: Padding(
-        padding: const EdgeInsets.only(
-          top: 8.0,
-          left: 8.0,
-          right: 8.0,
-          bottom: 8.0,
+    return GestureDetector(
+      onTap: onPressed,
+      child: Card(
+        elevation: 10.0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(15.0),
         ),
-        child: Row(
-          children: [
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    data.category!,
-                    style: const TextStyle(
-                      fontSize: 20.0,
-                      color: Color(0xFF5E5E5E),
-                      fontWeight: FontWeight.w500,
+        margin: const EdgeInsets.all(0.0),
+        child: Padding(
+          padding: const EdgeInsets.only(
+            top: 8.0,
+            left: 8.0,
+            right: 8.0,
+            bottom: 8.0,
+          ),
+          child: Row(
+            children: [
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      data.category!,
+                      style: const TextStyle(
+                        fontSize: 20.0,
+                        color: Color(0xFF5E5E5E),
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
-                  ),
-                  const SizedBox(
-                    height: 5.0,
-                  ),
-                  Text(
-                    "Nurse: ${data.nurseName}",
-                    style: const TextStyle(
-                      fontSize: 15.0,
-                      color: Color(0xFF8A8A8A),
+                    const SizedBox(
+                      height: 5.0,
                     ),
-                  ),
-                  const SizedBox(
-                    height: 5.0,
-                  ),
-                  Text(
-                    generateValue(data.category!, data.readings!),
-                    style: const TextStyle(
-                      fontSize: 15.0,
-                      color: Color(0xFF8A8A8A),
+                    Text(
+                      "Nurse: ${data.nurseName}",
+                      style: const TextStyle(
+                        fontSize: 15.0,
+                        color: Color(0xFF8A8A8A),
+                      ),
                     ),
-                  ),
-                ],
+                    const SizedBox(
+                      height: 5.0,
+                    ),
+                    Text(
+                      generateValue(data.category!, data.readings!),
+                      style: const TextStyle(
+                        fontSize: 15.0,
+                        color: Color(0xFF8A8A8A),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-            Text(
-              data.date.toString(),
-              style: const TextStyle(
-                fontSize: 15.0,
-                color: kPrimaryColor,
-                fontWeight: FontWeight.bold,
+              Text(
+                data.date.toString(),
+                style: const TextStyle(
+                  fontSize: 15.0,
+                  color: kPrimaryColor,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
