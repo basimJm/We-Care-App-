@@ -8,7 +8,6 @@ import 'package:mapd722_group2_project/widgets/custom_text_form_field.dart';
 import 'package:mapd722_group2_project/widgets/form_label.dart';
 import 'package:mapd722_group2_project/widgets/form_spacer.dart';
 import 'package:mapd722_group2_project/widgets/label_spacer.dart';
-import 'package:mapd722_group2_project/widgets/login_background.dart';
 import 'package:mapd722_group2_project/widgets/secondary_button.dart';
 import 'package:provider/provider.dart';
 
@@ -44,10 +43,12 @@ class LoginView extends StatelessWidget with ValidatorMixin {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Center(
-                              child: Hero(
-                                  tag: "logo",
-                                  child: Image.asset(
-                                      "assets/logos/wecare_logo.png"))),
+                            child: Hero(
+                              tag: "logo",
+                              child:
+                                  Image.asset("assets/logos/wecare_logo.png"),
+                            ),
+                          ),
                           FormSpacer(
                             height: 40.0,
                           ),

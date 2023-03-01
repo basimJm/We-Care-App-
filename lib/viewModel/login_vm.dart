@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mapd722_group2_project/constants/route_name.dart';
+import 'package:mapd722_group2_project/services/login_service.dart';
+import 'package:mapd722_group2_project/widgets/error_dialog.dart';
+import 'package:mapd722_group2_project/widgets/loading_overlay.dart';
 
 class LoginVM extends ChangeNotifier {
   // This is the key for the form widget
@@ -14,11 +17,20 @@ class LoginVM extends ChangeNotifier {
   // Login function
   onLogin({required BuildContext context}) async {
     if (formKey.currentState!.validate()) {
-      Navigator.pushNamedAndRemoveUntil(
-        context,
-        RoutesName.homeRoute,
-        (route) => false,
-      );
+      LoadingOverlay.of(context).show();
+
+      LoginService.login(email: email.text, password: password.text)
+          .then((value) {
+        LoadingOverlay.of(context).hide();
+        Navigator.pushNamedAndRemoveUntil(
+          context,
+          RoutesName.homeRoute,
+          (route) => false,
+        );
+      }).catchError((err) {
+        LoadingOverlay.of(context).hide();
+        ErrorDialogBox.errorDialog('Error', err.toString(), context);
+      });
     }
   }
 }
