@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:mapd722_group2_project/services/register_service.dart';
+import 'package:mapd722_group2_project/widgets/error_dialog.dart';
+import 'package:mapd722_group2_project/widgets/loading_overlay.dart';
+import 'package:mapd722_group2_project/widgets/success_dialog.dart';
 
 class RegisterVM extends ChangeNotifier {
   // This is the key for the form widget
@@ -17,6 +21,25 @@ class RegisterVM extends ChangeNotifier {
   void registerUser({
     required BuildContext context,
   }) async {
-    if (formKey.currentState!.validate()) {}
+    if (formKey.currentState!.validate()) {
+      LoadingOverlay.of(context).show();
+
+      RegisterService.register(
+              firstName: firstName.text,
+              lastName: lastName.text,
+              email: email.text,
+              password: confirmPassword.text)
+          .then((value) {
+        LoadingOverlay.of(context).hide();
+        SuccessDialogBox.successDialog("Success",
+                "Your account has been successfully created", context)
+            .then((value) {
+          Navigator.pop(context);
+        });
+      }).catchError((err) {
+        LoadingOverlay.of(context).hide();
+        ErrorDialogBox.errorDialog("Error", err.toString(), context);
+      });
+    }
   }
 }
