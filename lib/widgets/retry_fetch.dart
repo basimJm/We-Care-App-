@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mapd722_group2_project/themes/app_theme.dart';
 
 class RetryFetch extends StatelessWidget {
   const RetryFetch({
@@ -23,14 +24,14 @@ class RetryFetch extends StatelessWidget {
           Text(
             '$errorMessage',
             style: TextStyle(
-              fontSize: 16.0,
+              fontSize: 20.0,
               color: textColor,
             ),
           ),
           IconButton(
-            icon: Icon(
+            icon: const Icon(
               Icons.refresh,
-              color: textColor,
+              color: kPrimaryColor,
             ),
             onPressed: onPressed as void Function()?,
             color: Theme.of(context).primaryColor,
