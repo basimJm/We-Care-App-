@@ -66,8 +66,8 @@ class Readings {
   dynamic systolic;
   dynamic diastolic;
   bool? isVisible;
-  String? bpm;
-  String? percentage;
+  int? bpm;
+  int? percentage;
 
   factory Readings.fromJson(Map<String, dynamic> json) => Readings(
         systolic: json["systolic"],
