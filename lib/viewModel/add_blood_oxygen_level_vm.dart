@@ -1,6 +1,10 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:mapd722_group2_project/services/blood_oxygen_level_service.dart';
+import 'package:mapd722_group2_project/widgets/error_dialog.dart';
+import 'package:mapd722_group2_project/widgets/loading_overlay.dart';
+import 'package:mapd722_group2_project/widgets/success_dialog.dart';
 
 class AddBloodOxygenLevelVM extends ChangeNotifier {
   final DateFormat formatter = DateFormat('yyyy-MM-dd');
@@ -34,6 +38,29 @@ class AddBloodOxygenLevelVM extends ChangeNotifier {
   }
 
   onSubmit({required BuildContext context, required String patientId}) {
-    if (formKey.currentState!.validate()) {}
+    if (formKey.currentState!.validate()) {
+      LoadingOverlay.of(context).show();
+
+      BloodOxygenLevelService.addBloodOxygenLevel(
+        patientId: patientId,
+        category: "Blood Oxygen Level",
+        date: dateTested.text,
+        nurseName: nurseName.text,
+        percentage: percentage.text,
+      ).then((value) {
+        LoadingOverlay.of(context).hide();
+
+        SuccessDialogBox.successDialog(
+                "Success",
+                "Blood Oxygen Level test has been successfully created",
+                context)
+            .then((value) {
+          Navigator.pop(context);
+        });
+      }).catchError((err) {
+        LoadingOverlay.of(context).hide();
+        ErrorDialogBox.errorDialog("Error", err.toString(), context);
+      });
+    }
   }
 }

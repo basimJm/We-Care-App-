@@ -50,8 +50,10 @@ class AddRespiratoryRateVM extends ChangeNotifier {
       ).then((value) {
         LoadingOverlay.of(context).hide();
 
-        SuccessDialogBox.successDialog("Success",
-                "Respiratory Rate test has been successfully created", context)
+        SuccessDialogBox.successDialog(
+                "Success",
+                "Respiratory Rate test test has been successfully created",
+                context)
             .then((value) {
           Navigator.pop(context);
         });

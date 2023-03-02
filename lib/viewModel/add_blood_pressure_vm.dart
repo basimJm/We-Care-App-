@@ -53,7 +53,7 @@ class AddBloodPressureVM extends ChangeNotifier {
         LoadingOverlay.of(context).hide();
 
         SuccessDialogBox.successDialog("Success",
-                "Blood pressure has been successfully created", context)
+                "Blood pressure test has been successfully created", context)
             .then((value) {
           Navigator.pop(context);
         });

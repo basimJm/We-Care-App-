@@ -51,7 +51,7 @@ class AddHeartBeatRateVM extends ChangeNotifier {
         LoadingOverlay.of(context).hide();
 
         SuccessDialogBox.successDialog("Success",
-                "Heart Beat Rate has been successfully created", context)
+                "Heart Beat Rate test has been successfully created", context)
             .then((value) {
           Navigator.pop(context);
         });
