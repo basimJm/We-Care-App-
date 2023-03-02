@@ -1,6 +1,10 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:mapd722_group2_project/services/blood_pressure_service.dart';
+import 'package:mapd722_group2_project/widgets/error_dialog.dart';
+import 'package:mapd722_group2_project/widgets/loading_overlay.dart';
+import 'package:mapd722_group2_project/widgets/success_dialog.dart';
 
 class AddBloodPressureVM extends ChangeNotifier {
   final DateFormat formatter = DateFormat('yyyy-MM-dd');
@@ -35,6 +39,28 @@ class AddBloodPressureVM extends ChangeNotifier {
   }
 
   onSubmit({required BuildContext context, required String patientId}) {
-    if (formKey.currentState!.validate()) {}
+    if (formKey.currentState!.validate()) {
+      LoadingOverlay.of(context).show();
+
+      BloodPressureService.addBloodPressure(
+              patientId: patientId,
+              category: "Blood Pressure",
+              date: dateTested.text,
+              nurseName: nurseName.text,
+              systolic: systolic.text,
+              diastolic: diastolic.text)
+          .then((value) {
+        LoadingOverlay.of(context).hide();
+
+        SuccessDialogBox.successDialog("Success",
+                "Blood pressure has been successfully created", context)
+            .then((value) {
+          Navigator.pop(context);
+        });
+      }).catchError((err) {
+        LoadingOverlay.of(context).hide();
+        ErrorDialogBox.errorDialog("Error", err.toString(), context);
+      });
+    }
   }
 }
