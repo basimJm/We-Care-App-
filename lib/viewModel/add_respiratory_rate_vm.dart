@@ -1,6 +1,10 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:mapd722_group2_project/services/respiratory_rate_service.dart';
+import 'package:mapd722_group2_project/widgets/error_dialog.dart';
+import 'package:mapd722_group2_project/widgets/loading_overlay.dart';
+import 'package:mapd722_group2_project/widgets/success_dialog.dart';
 
 class AddRespiratoryRateVM extends ChangeNotifier {
   final DateFormat formatter = DateFormat('yyyy-MM-dd');
@@ -34,6 +38,27 @@ class AddRespiratoryRateVM extends ChangeNotifier {
   }
 
   onSubmit({required BuildContext context, required String patientId}) {
-    if (formKey.currentState!.validate()) {}
+    if (formKey.currentState!.validate()) {
+      LoadingOverlay.of(context).show();
+
+      RespiratoryRateService.addRespiratoryRate(
+        patientId: patientId,
+        category: "Respiratory rate",
+        date: dateTested.text,
+        nurseName: nurseName.text,
+        bpm: rate.text,
+      ).then((value) {
+        LoadingOverlay.of(context).hide();
+
+        SuccessDialogBox.successDialog("Success",
+                "Respiratory Rate test has been successfully created", context)
+            .then((value) {
+          Navigator.pop(context);
+        });
+      }).catchError((err) {
+        LoadingOverlay.of(context).hide();
+        ErrorDialogBox.errorDialog("Error", err.toString(), context);
+      });
+    }
   }
 }
