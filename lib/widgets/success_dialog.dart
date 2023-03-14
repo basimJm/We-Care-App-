@@ -39,6 +39,7 @@ class SuccessDialogBox {
                 Align(
                   alignment: Alignment.center,
                   child: TextButton(
+                    key: const Key('successOkButton'),
                     child: const Text(
                       'OK',
                       style: TextStyle(

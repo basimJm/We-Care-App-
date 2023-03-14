@@ -31,6 +31,7 @@ class _RegisterViewState extends State<RegisterView> with ValidatorMixin {
         child: Consumer<RegisterVM>(
           builder: (context, vm, child) {
             return SingleChildScrollView(
+              key: const Key('RegisterScroll'),
               child: Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: Form(
@@ -44,6 +45,7 @@ class _RegisterViewState extends State<RegisterView> with ValidatorMixin {
                       ),
                       LabelSpacer(),
                       CustomFormTextField(
+                        key: const Key('firstNameRegister'),
                         controller: vm.firstName,
                         validator: (value) =>
                             requiredValidation(value, "First name is required"),
@@ -57,6 +59,7 @@ class _RegisterViewState extends State<RegisterView> with ValidatorMixin {
                       ),
                       LabelSpacer(),
                       CustomFormTextField(
+                        key: const Key('lastNameRegister'),
                         controller: vm.lastName,
                         validator: (value) =>
                             requiredValidation(value, "Last name is required"),
@@ -70,6 +73,7 @@ class _RegisterViewState extends State<RegisterView> with ValidatorMixin {
                       ),
                       LabelSpacer(),
                       CustomFormTextField(
+                        key: const Key('emailRegister'),
                         controller: vm.email,
                         validator: (value) => emailValidation(value),
                         hint: 'Enter email',
@@ -85,6 +89,7 @@ class _RegisterViewState extends State<RegisterView> with ValidatorMixin {
                       ),
                       LabelSpacer(),
                       CustomFormTextField(
+                        key: const Key('passwordRegister'),
                         controller: vm.password,
                         validator: (value) => passwordValidation(value),
                         hint: 'Enter password',
@@ -101,6 +106,7 @@ class _RegisterViewState extends State<RegisterView> with ValidatorMixin {
                       ),
                       LabelSpacer(),
                       CustomFormTextField(
+                        key: const Key('confirmPasswordRegister'),
                         controller: vm.confirmPassword,
                         validator: (value) =>
                             passwordMatch(value, vm.password.text),
@@ -122,6 +128,7 @@ class _RegisterViewState extends State<RegisterView> with ValidatorMixin {
                         child: SizedBox(
                           width: double.infinity,
                           child: CustomButton(
+                            key: const Key('buttonRegister'),
                             onTap: () {
                               vm.registerUser(context: context);
                             },

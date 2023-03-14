@@ -19,6 +19,7 @@ class LoginVM extends ChangeNotifier {
     if (formKey.currentState!.validate()) {
       LoadingOverlay.of(context).show();
 
+      // this function call the login service to login
       LoginService.login(email: email.text, password: password.text)
           .then((value) {
         LoadingOverlay.of(context).hide();

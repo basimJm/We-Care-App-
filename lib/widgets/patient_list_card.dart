@@ -47,6 +47,7 @@ class PatientListCard extends StatelessWidget {
                 backgroundColor: Color(0xFFEAEAEA),
                 child: Icon(
                   FontAwesomeIcons.user,
+                  textDirection: TextDirection.ltr,
                   color: Colors.white,
                 ),
               ),
@@ -59,6 +60,7 @@ class PatientListCard extends StatelessWidget {
                   children: [
                     Text(
                       "$firstName $lastName",
+                      textDirection: TextDirection.ltr,
                       style: const TextStyle(
                         fontSize: 20.0,
                         fontWeight: FontWeight.w500,
@@ -69,6 +71,7 @@ class PatientListCard extends StatelessWidget {
                     ),
                     Text(
                       "${sex == 'M' ? 'Male' : 'Female'}, ${MyUtils.calculateAge(dob)} years old",
+                      textDirection: TextDirection.ltr,
                       style: const TextStyle(
                         fontSize: 15.0,
                         color: Color(0xFF8A8A8A),

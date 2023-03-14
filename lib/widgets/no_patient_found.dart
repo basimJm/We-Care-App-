@@ -11,7 +11,7 @@ class NoPatientFound extends StatelessWidget {
       children: [
         Image.asset("assets/icons/empty_icon.png"),
         const Text(
-          'Np patient found',
+          'No patient found',
           style: TextStyle(
             color: kTextColor,
             fontSize: 20.0,

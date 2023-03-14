@@ -58,6 +58,7 @@ class LoginView extends StatelessWidget with ValidatorMixin {
                           ),
                           LabelSpacer(),
                           CustomFormTextField(
+                            key: const Key('emailLogin'),
                             controller: vm.email,
                             validator: (value) => emailValidation(value),
                             hint: 'Enter email',
@@ -73,6 +74,7 @@ class LoginView extends StatelessWidget with ValidatorMixin {
                           ),
                           LabelSpacer(),
                           CustomFormTextField(
+                            key: const Key('passwordLogin'),
                             controller: vm.password,
                             validator: (value) => passwordValidation(value),
                             hint: 'Enter password',
@@ -88,6 +90,7 @@ class LoginView extends StatelessWidget with ValidatorMixin {
                           SizedBox(
                             width: double.infinity,
                             child: CustomButton(
+                                key: const Key('buttonLogin'),
                                 onTap: () {
                                   vm.onLogin(context: context);
                                 },
@@ -100,6 +103,7 @@ class LoginView extends StatelessWidget with ValidatorMixin {
                           SizedBox(
                             width: double.infinity,
                             child: SecondaryButton(
+                              key: const Key('goToRegisterButton'),
                               onTap: () {
                                 Navigator.pushNamed(
                                   context,

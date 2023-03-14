@@ -485,6 +485,7 @@ class _HomeViewState extends State<HomeView> {
               ),
             ),
             floatingActionButton: FloatingActionButton(
+              key: const Key('createPatientFloatButton'),
               onPressed: () {
                 FocusScope.of(context).unfocus();
                 Navigator.pushNamed(context, RoutesName.addNewPatientRoute)

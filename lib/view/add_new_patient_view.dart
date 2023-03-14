@@ -24,6 +24,7 @@ class AddNewPatientView extends StatelessWidget with ValidatorMixin {
               title: const Text('Add new patient'),
             ),
             body: SingleChildScrollView(
+              key: const Key('createPatientScroll'),
               child: Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: Form(
@@ -37,6 +38,7 @@ class AddNewPatientView extends StatelessWidget with ValidatorMixin {
                       ),
                       LabelSpacer(),
                       CustomFormTextField(
+                        key: const Key('createPatientFirstName'),
                         controller: vm.firstName,
                         validator: (value) =>
                             requiredValidation(value, "First name is required"),
@@ -50,6 +52,7 @@ class AddNewPatientView extends StatelessWidget with ValidatorMixin {
                       ),
                       LabelSpacer(),
                       CustomFormTextField(
+                        key: const Key('createPatientLastName'),
                         controller: vm.lastName,
                         validator: (value) =>
                             requiredValidation(value, "Last name is required"),
@@ -63,6 +66,7 @@ class AddNewPatientView extends StatelessWidget with ValidatorMixin {
                       ),
                       LabelSpacer(),
                       CustomFormTextField(
+                        key: const Key('createPatientAddress'),
                         controller: vm.address,
                         validator: (value) =>
                             requiredValidation(value, "Address is required"),
@@ -76,6 +80,7 @@ class AddNewPatientView extends StatelessWidget with ValidatorMixin {
                       ),
                       LabelSpacer(),
                       CustomFormTextField(
+                        key: const Key('createPatientMobile'),
                         controller: vm.mobileNumber,
                         validator: (value) => requiredValidation(
                             value, "Mobile number is required"),
@@ -89,6 +94,7 @@ class AddNewPatientView extends StatelessWidget with ValidatorMixin {
                       ),
                       LabelSpacer(),
                       CustomFormTextField(
+                        key: const Key('createPatientEmail'),
                         controller: vm.email,
                         validator: (value) => emailValidation(value),
                         hint: 'Enter email',
@@ -129,10 +135,12 @@ class AddNewPatientView extends StatelessWidget with ValidatorMixin {
                       ),
                       LabelSpacer(),
                       GestureDetector(
+                        key: const Key('clickSelectDateCreatePatient'),
                         onTap: () {
                           vm.selectDateOfBirth(context: context);
                         },
                         child: CustomFormTextField(
+                          key: const Key('createPatientDob'),
                           enabled: false,
                           prefixIcon: const Icon(
                             Icons.calendar_month,
@@ -155,6 +163,7 @@ class AddNewPatientView extends StatelessWidget with ValidatorMixin {
                         child: SizedBox(
                           width: double.infinity,
                           child: CustomButton(
+                            key: const Key('createPatientSubmitButton'),
                             onTap: () {
                               vm.onSubmit(context: context);
                             },
