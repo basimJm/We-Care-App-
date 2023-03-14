@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mapd722_group2_project/themes/app_theme.dart';
 import 'package:mapd722_group2_project/validators/validator_mixin.dart';
-import 'package:mapd722_group2_project/viewModel/add_blood_pressure_vm.dart';
 import 'package:mapd722_group2_project/viewModel/fix_patient_vm.dart';
 import 'package:mapd722_group2_project/widgets/custom_button.dart';
 import 'package:mapd722_group2_project/widgets/custom_text_form_field.dart';
@@ -126,7 +125,11 @@ class FixPatientView extends StatelessWidget with ValidatorMixin {
                         width: double.infinity,
                         child: CustomButton(
                           onTap: () {
-                            vm.onSubmit(context: context, patientId: patientId);
+                            vm.onSubmit(
+                              context: context,
+                              patientId: patientId,
+                              testId: testId,
+                            );
                           },
                           title: 'Submit',
                           backgroundColor: kButtonColor,

@@ -384,7 +384,7 @@ class _HomeViewState extends State<HomeView> {
                                                                             index]
                                                                         .testId!,
                                                                     patientId: vm
-                                                                        .patientData[
+                                                                        .patientCriticalData[
                                                                             index]
                                                                         .id!,
                                                                   ),
@@ -463,12 +463,15 @@ class _HomeViewState extends State<HomeView> {
                                                   },
                                                 );
                                               },
-                                              firstName: vm.patientData[index]
+                                              firstName: vm
+                                                  .patientCriticalData[index]
                                                   .firstName!,
                                               lastName: vm
-                                                  .patientData[index].lastName!,
-                                              sex: vm.patientData[index].sex!,
-                                              dob: vm.patientData[index]
+                                                  .patientCriticalData[index]
+                                                  .lastName!,
+                                              sex: vm.patientCriticalData[index]
+                                                  .sex!,
+                                              dob: vm.patientCriticalData[index]
                                                   .dateOfBirth!,
                                               condition: vm
                                                   .patientCriticalData[index]
