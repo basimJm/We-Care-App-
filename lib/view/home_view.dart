@@ -241,7 +241,7 @@ class _HomeViewState extends State<HomeView> {
                                                             imageAsset:
                                                                 "assets/icons/patient_general.png",
                                                             title:
-                                                                "Patient General Information",
+                                                                "Patient General Info",
                                                             subtitle:
                                                                 "View / Update",
                                                             onPressed: () {
@@ -402,7 +402,7 @@ class _HomeViewState extends State<HomeView> {
                                                             imageAsset:
                                                                 "assets/icons/patient_general.png",
                                                             title:
-                                                                "Patient General Information",
+                                                                "Patient General Info",
                                                             subtitle:
                                                                 "View / Update",
                                                             onPressed: () {

@@ -51,7 +51,7 @@ class _GeneralInformationViewState extends State<GeneralInformationView>
                     ? Center(
                         child: RetryFetch(
                           errorMessage: vm.errorMessage,
-                          onPressed: vm.initialization,
+                          onPressed:()=> vm.initialization(patientId: widget.patientId),
                         ),
                       )
                     : SingleChildScrollView(

@@ -9,7 +9,7 @@ import 'package:mapd722_group2_project/models/patient_list_model.dart';
 import 'package:mapd722_group2_project/models/update_patient_model.dart';
 
 class PatientService {
-  static const String baseUrl = "https://smarthealth2.herokuapp.com";
+  static const String baseUrl = "https://patients-app-api-herokuapp.onrender.com";
 
   static Future<CreatePatientModel> createNewPatient({
     required String firstName,
@@ -134,13 +134,13 @@ class PatientService {
       throw ('No Internet connection available');
     } on Exception catch (err) {
       if (kDebugMode) {
-        print(err);
+        print("no critical patient because :${err}");
       }
       throw ("Failed to load data");
     }
   }
 
-  static Future<List<PatientDetailModel>> getPatientDetails({
+  static Future<PatientDetailModel> getPatientDetails({
     required String patientId,
   }) async {
     try {

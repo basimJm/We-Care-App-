@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 import 'package:mapd722_group2_project/models/login_model.dart';
 
 class LoginService {
-  static const String baseUrl = "https://smarthealth2.herokuapp.com";
+  static const String baseUrl = "https://patients-app-api-herokuapp.onrender.com";
 
   static Future<LoginModel> login({
     required String email,

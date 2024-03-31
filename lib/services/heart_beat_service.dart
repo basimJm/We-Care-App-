@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 import 'package:mapd722_group2_project/models/heart_beat_model.dart';
 
 class HeartBeatService {
-  static const String baseUrl = "https://smarthealth2.herokuapp.com";
+  static const String baseUrl = "https://patients-app-api-herokuapp.onrender.com";
 
   static Future<HeartBeatModel> addHeartBeat({
     required String patientId,

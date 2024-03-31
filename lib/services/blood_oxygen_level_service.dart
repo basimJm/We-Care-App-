@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 import 'package:mapd722_group2_project/models/blood_oxygen_level_model.dart';
 
 class BloodOxygenLevelService {
-  static const String baseUrl = "https://smarthealth2.herokuapp.com";
+  static const String baseUrl = "https://patients-app-api-herokuapp.onrender.com";
 
   static Future<BloodOxygenLevelModel> addBloodOxygenLevel({
     required String patientId,
@@ -53,7 +53,7 @@ class BloodOxygenLevelService {
       throw ('No Internet connection available');
     } on Exception catch (err) {
       if (kDebugMode) {
-        print(err);
+        print("error when create oxygen level test because :${err}");
       }
       throw ("Failed to create test");
     }

@@ -40,15 +40,15 @@ class GeneralInformationVM extends ChangeNotifier {
     setGeneralInformationStates(GeneralInformationStates.isLoading);
 
     PatientService.getPatientDetails(patientId: patientId).then((value) {
-      if (value.isNotEmpty) {
-        firstName.text = value[0].firstName!;
-        lastName.text = value[0].lastName!;
-        address.text = value[0].address!;
-        email.text = value[0].email!;
-        mobileNumber.text = value[0].mobileNumber!;
-        dob.text = formatter.format(value[0].dateOfBirth!);
-        _selectedDate = value[0].dateOfBirth!;
-        if (value[0].sex == "M") {
+      if (value != null) {
+        firstName.text = value.firstName!;
+        lastName.text = value.lastName!;
+        address.text = value.address!;
+        email.text = value.email!;
+        mobileNumber.text = value.mobileNumber!;
+        dob.text = formatter.format(value.dateOfBirth!);
+        _selectedDate = value.dateOfBirth!;
+        if (value.sex == "M") {
           setGender("M");
         } else {
           setGender("F");

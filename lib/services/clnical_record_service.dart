@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:mapd722_group2_project/models/clinical_records_model.dart';
 
 class ClincalRecordService {
-  static const String baseUrl = "https://smarthealth2.herokuapp.com";
+  static const String baseUrl = "https://patients-app-api-herokuapp.onrender.com";
 
   static Future<List<ClinicalRecordsModel>> getClincalRecords({
     required String patientId,
